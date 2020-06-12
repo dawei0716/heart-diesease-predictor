@@ -261,7 +261,6 @@
         document.getElementById("chol_id").innerHTML = json["chol"];
         document.getElementById("fbs_id").innerHTML = json["fbs"];
         document.getElementById("restecg_id").innerHTML = json["restecg"];
-        console.log(json["thalach"]);
         document.getElementById("thalach_id").innerHTML = json["thalach"];
         document.getElementById("exang_id").innerHTML = json["exang"];
         document.getElementById("oldpeak_id").innerHTML = json["oldpeak"];
@@ -270,7 +269,7 @@
         document.getElementById("thal_id").innerHTML = json["thal"];
       },
       error: function (xhr, errmsg, err) {
-        print("FAILED JSON");
+        console.log("ERROR")
       },
     });
   });
