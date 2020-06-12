@@ -33,7 +33,7 @@ def predict_chances(request):
         thal = float(request.POST.get('thal'))
 
         # Unpickle model
-        model = pd.read_pickle(r"new_model.pickle")
+        model = pd.read_pickle(r"machine_learning_stuff/new_model.pickle")
         # Make prediction
         result = model.predict(
             [[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
