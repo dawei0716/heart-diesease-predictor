@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="container pt-5 pull-right">
+        <div class="row">
+
+        <h1>Prediction History</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Age</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Chest Pain</th>
+                <th scope="col">RBP</th>
+                <th scope="col">Serum Cholestoral (mg/dl)</th>
+                <th scope="col">Fasting Blood Sugar</th>
+                <th scope="col">Resting Electrocardiographic Result</th>
+                <th scope="col">Max Heart Rate</th>
+                <th scope="col">Excercise Induced Angina</th>
+                <th scope="col">ST depression induced by exercise relative to rest </th>
+                <th scope="col">Slope of peak exercise</th>
+                <th scope="col">Number of Major Vessels</th>
+                <th scope="col">Thal</th>
+                <th scope="col">Prediction</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in dataset %}
+                    <tr>
+                    <th scope="row">{{ data.id }}</th>
+                    <td>{{ data.age }}</td>
+                    <td>
+                        {% if data.sex == 0 %}
+                            Female
+                        {% else %}
+                            Male
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if data.cp == 0 %}
+                            asymptomatic
+                        {% elif data.cp == 1 %}
+                            atypical angina
+                        {% elif data.cp == 2 %}
+                            non-anginal pain
+                        {% elif data.cp == 3 %}
+                            typical angina
+                        {% else %}
+                            undefined
+                        {% endif %} 
+                    </td>
+                    <td>{{ data.trestbps }}</td>
+                    <td>{{ data.chol }}</td>
+                    <td>
+                        {% if data.fbs == 0 %}
+                            no
+                        {% else %}
+                            yes
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if data.restecg == 0 %}
+                            left ventricular hypertrophy
+                        {% elif data.restecg == 1 %}
+                            normal
+                        {% elif data.restecg == 2 %}
+                            ST-T wave abnormality
+                        {% else %}
+                            undefined
+                        {% endif %} 
+                    </td>
+                    <td>{{ data.thalach }}</td>
+                    <td>
+                        {% if data.exang == 0 %}
+                            no
+                        {% else %}
+                            yes
+                        {% endif %} 
+                    </td>
+                    <td>{{ data.oldpeak }}</td>
+                    <td>{{ data.slope }}</td>
+                    <td>{{ data.ca }}</td>
+                    <td>
+                        {% if data.thal == 1 %}
+                            fixed defect
+                        {% elif data.thal == 2 %}
+                            normal
+                        {% elif data.thal == 3 %}
+                            reversible defect
+                        {% else %}
+                            undefined
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if data.classification == '0' %}
+                            Heart Disease Likely
+                        {% elif data.classification == '1' %}
+                            Healthy
+                        {% else %}
+                            {{ data.classification }}
+                        {% endif %} 
+                    </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
